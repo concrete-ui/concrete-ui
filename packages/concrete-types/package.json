@@ -1,5 +1,5 @@
 {
-  "name": "@concrete-ui/utils",
+  "name": "@concrete-ui/types",
   "version": "0.0.0",
   "main": "./dist/index.js",
   "module": "./dist/index.mjs",
@@ -17,7 +17,6 @@
   },
   "devDependencies": {
     "@concrete-ui/tsconfig": "*",
-    "@concrete-ui/types": "*",
     "eslint": "^8.15.0",
     "eslint-config-concrete-backend": "*",
     "tsup": "^5.10.1",

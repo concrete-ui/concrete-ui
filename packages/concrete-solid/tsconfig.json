@@ -1,5 +1,5 @@
 {
   "extends": "@concrete-ui/tsconfig/solid-library.json",
-  "include": ["."],
+  "include": [".", "../concrete-types/src/theme.ts"],
   "exclude": ["dist", "build", "node_modules"]
 }
