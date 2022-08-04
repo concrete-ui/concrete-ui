@@ -10,13 +10,9 @@ export type ColorScale = {
   "-4": string;
 };
 
-export type Color = {
+export type Colors = {
   base: ColorScale;
   subdued: ColorScale;
-};
-
-export type Colors = {
-  brand: Color;
 };
 
 export type Theme = {

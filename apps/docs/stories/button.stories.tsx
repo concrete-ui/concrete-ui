@@ -3,16 +3,18 @@ import { Meta, Story } from '@storybook/html';
 
 export default {
   title: "Button",
-  // argTypes: {
-  //   variant: { control: "string" },
-  //   style: { control: "string" },
-  // },
 } as Meta;
 
 const Template: Story = (args) => <Button {...args} />;
 
 export const BrandButton = Template.bind({});
-BrandButton.args = { variant: "solid", semantics: "brand" };
+BrandButton.args = { variant: "solid", colorScheme: "base" };
 
 export const OutlineButton = Template.bind({});
-OutlineButton.args = { variant: "outline", semantics: "brand" };
+OutlineButton.args = { variant: "outline", colorScheme: "base" };
+
+export const SubduedButton = Template.bind({});
+SubduedButton.args = { variant: "solid", colorScheme: "subdued" };
+
+export const SubduedOutlineButton = Template.bind({});
+SubduedOutlineButton.args = { variant: "outline", colorScheme: "subdued" };
