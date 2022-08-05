@@ -7,8 +7,10 @@ export default {
 
 const Template: Story = (args) => <Button {...args}>Accept</Button>;
 
-export const BrandButton = Template.bind({});
-BrandButton.args = { variant: "solid", colorScheme: "base" };
+export const DefaultButton = Template.bind({});
+
+export const BaseButton = Template.bind({});
+BaseButton.args = { variant: "solid", colorScheme: "base" };
 
 export const OutlineButton = Template.bind({});
 OutlineButton.args = { variant: "outline", colorScheme: "base" };
