@@ -1,27 +1,14 @@
-import { Colors, ThemeProps } from '@concrete-ui/types';
-import { Component, JSX } from 'solid-js';
+import { Colors, ColorStyles, ThemeProps } from '@concrete-ui/types';
+import { JSX, ParentComponent } from 'solid-js';
 import { measurementToCssUnit } from '@concrete-ui/utils';
 import { styled } from 'solid-styled-components';
-import { useTheme } from '../provider';
+import { useTheme } from '../../provider';
 
 export interface ButtonProps
-  extends JSX.ButtonHTMLAttributes<HTMLButtonElement>,
-    ThemeProps {
+  extends JSX.ButtonHTMLAttributes<HTMLButtonElement> {
   variant: "solid" | "outline";
   colorScheme: "base" | "subdued";
 }
-
-type ColorStates = {
-  inactive: string;
-  hover?: string;
-  active?: string;
-};
-
-type ColorStyles = {
-  fg: ColorStates;
-  bg: ColorStates;
-  border?: ColorStates;
-};
 
 function generateColorStyles(
   colors: Colors,
@@ -85,8 +72,8 @@ function generateColorStyles(
   }
 }
 
-const ButtonStyled = styled("button")(
-  ({ theme: { colors }, variant, colorScheme }: ButtonProps) => {
+export const ButtonStyled = styled("button")(
+  ({ theme: { colors }, variant, colorScheme }: ButtonProps & ThemeProps) => {
     const { bg, fg, border } = generateColorStyles(
       colors,
       colorScheme,
@@ -129,12 +116,12 @@ const ButtonStyled = styled("button")(
   }
 );
 
-export const Button: Component<ButtonProps> = (props) => {
+export const Button: ParentComponent<ButtonProps> = (props) => {
   const theme = useTheme();
 
   return (
     <ButtonStyled {...props} theme={theme}>
-      Accept
+      {props.children}
     </ButtonStyled>
   );
 };

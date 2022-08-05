@@ -5,7 +5,7 @@ export default {
   title: "Button",
 } as Meta;
 
-const Template: Story = (args) => <Button {...args} />;
+const Template: Story = (args) => <Button {...args}>Accept</Button>;
 
 export const BrandButton = Template.bind({});
 BrandButton.args = { variant: "solid", colorScheme: "base" };

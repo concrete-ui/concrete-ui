@@ -1,1 +1,8 @@
-export type { Colors, Theme, ThemeProps, ColorScale } from "./theme";
+export type {
+  Colors,
+  Theme,
+  ThemeProps,
+  ColorScale,
+  ColorStates,
+  ColorStyles,
+} from "./theme";

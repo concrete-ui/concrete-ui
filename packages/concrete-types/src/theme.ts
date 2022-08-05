@@ -22,3 +22,15 @@ export type Theme = {
 export interface ThemeProps {
   theme: Theme;
 }
+
+export type ColorStates = {
+  inactive: string;
+  hover?: string;
+  active?: string;
+};
+
+export type ColorStyles = {
+  fg: ColorStates;
+  bg: ColorStates;
+  border?: ColorStates;
+};
