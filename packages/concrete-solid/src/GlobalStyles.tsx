@@ -1,261 +1,95 @@
-import { createGlobalStyles } from 'solid-styled-components';
+import { globalCss } from '@stitches/core';
+import { VoidComponent } from 'solid-js';
 // import { useTheme } from './provider';
 
-export const GlobalStyles = () => {
-  // const theme = useTheme();
+export const globalStyles = globalCss({
+  "*, ::before, ::after": {
+    boxSizing: "border-box",
+    borderWidth: "0",
+    borderStyle: "solid",
+    backgroundRepeat: "no-repeat",
+  },
+  "::before, ::after": { textDecoration: "inherit", verticalAlign: "inherit" },
+  html: {
+    lineHeight: 1.5,
+    WebkitTextSizeAdjust: "100%",
+    MozTabSize: "4",
+    tabSize: 4,
+    fontFamily:
+      'system-ui, -apple-system, "Segoe UI", "Roboto", "Ubuntu", "Cantarell", "Noto Sans", sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol", "Noto Color Emoji"',
+  },
+  body: { margin: "0", lineHeight: "inherit" },
+  hr: { height: "0", color: "inherit", borderTopWidth: "1px" },
+  "abbr:where([title])": { textDecoration: "underline dotted" },
+  "h1, h2, h3, h4, h5, h6": { fontSize: "inherit", fontWeight: "inherit" },
+  a: { color: "inherit", textDecoration: "inherit" },
+  "b, strong": { fontWeight: "bolder" },
+  "code, kbd, samp, pre": {
+    fontFamily:
+      'ui-monospace, "Menlo", "Consolas", "Roboto Mono", "Ubuntu Monospace", "Noto Mono", "Oxygen Mono", "Liberation Mono", monospace, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol", "Noto Color Emoji"',
+    fontSize: "1em",
+  },
+  small: { fontSize: "80%" },
+  "sub, sup": {
+    fontSize: "75%",
+    lineHeight: 0,
+    position: "relative",
+    verticalAlign: "baseline",
+  },
+  sub: { bottom: "-0.25em" },
+  sup: { top: "-0.5em" },
+  table: {
+    textIndent: "0",
+    borderColor: "inherit",
+    borderCollapse: "collapse",
+  },
+  "button, input, optgroup, select, textarea": {
+    fontFamily: "inherit",
+    fontSize: "100%",
+    fontWeight: "inherit",
+    lineHeight: "inherit",
+    color: "inherit",
+    margin: "0",
+    padding: "0",
+  },
+  "button, select": { textTransform: "none" },
+  "button, [type='button'], [type='reset'], [type='submit']": {
+    WebkitAppearance: "button",
+    backgroundColor: "transparent",
+    backgroundImage: "none",
+  },
+  ":-moz-focusring": { outline: "auto" },
+  ":-moz-ui-invalid": { boxShadow: "none" },
+  progress: { verticalAlign: "baseline" },
+  "::-webkit-inner-spin-button, ::-webkit-outer-spin-button": {
+    height: "auto",
+  },
+  "[type='search']": { WebkitAppearance: "textfield", outlineOffset: "-2px" },
+  "::-webkit-search-decoration": { WebkitAppearance: "none" },
+  "::-webkit-file-upload-button": {
+    WebkitAppearance: "button",
+    font: "inherit",
+  },
+  summary: { display: "list-item" },
+  "blockquote, dl, dd, h1, h2, h3, h4, h5, h6, hr, figure, p, pre": {
+    margin: "0",
+  },
+  fieldset: { margin: "0", padding: "0" },
+  legend: { padding: "0" },
+  "ol, ul, menu": { listStyle: "none", margin: "0", padding: "0" },
+  textarea: { resize: "vertical" },
+  "input::placeholder, textarea::placeholder": { opacity: 1 },
+  'button, [role="button"]': { cursor: "pointer" },
+  ":disabled": { cursor: "default" },
+  "img, svg, video, canvas, audio, iframe, embed, object": {
+    display: "block",
+    verticalAlign: "middle",
+  },
+  "img, video": { maxWidth: "100%", height: "auto" },
+});
 
-  const Styles = createGlobalStyles`
-    *,
-    ::before,
-    ::after {
-      box-sizing: border-box; /* 1 */
-      border-width: 0; /* 2 */
-      border-style: solid; /* 2 */
-      background-repeat: no-repeat; /* 2 */
-    }
+export const GlobalStyles: VoidComponent = () => {
+  globalStyles();
 
-    ::before,
-    ::after {
-      text-decoration: inherit; /* 1 */
-      vertical-align: inherit; /* 2 */
-    }
-
-    html {
-      line-height: 1.5; /* 1 */
-      -webkit-text-size-adjust: 100%; /* 2 */
-      -moz-tab-size: 4; /* 3 */
-      tab-size: 4; /* 3 */
-      font-family:
-        system-ui,
-        /* macOS 10.11-10.12 */ -apple-system,
-        /* Windows 6+ */ "Segoe UI",
-        /* Android 4+ */ "Roboto",
-        /* Ubuntu 10.10+ */ "Ubuntu",
-        /* Gnome 3+ */ "Cantarell",
-        /* KDE Plasma 5+ */ "Noto Sans",
-        /* fallback */ sans-serif,
-        /* macOS emoji */ "Apple Color Emoji",
-        /* Windows emoji */ "Segoe UI Emoji",
-        /* Windows emoji */ "Segoe UI Symbol",
-        /* Linux emoji */ "Noto Color Emoji";
-    }
-
-    body {
-      margin: 0; /* 1 */
-      line-height: inherit; /* 2 */
-    }
-
-    hr {
-      height: 0; /* 1 */
-      color: inherit; /* 2 */
-      border-top-width: 1px; /* 3 */
-    }
-
-    abbr:where([title]) {
-      text-decoration: underline dotted;
-    }
-
-    h1,
-    h2,
-    h3,
-    h4,
-    h5,
-    h6 {
-      font-size: inherit;
-      font-weight: inherit;
-    }
-
-    a {
-      color: inherit;
-      text-decoration: inherit;
-    }
-
-    b,
-    strong {
-      font-weight: bolder;
-    }
-
-    code,
-    kbd,
-    samp,
-    pre {
-      font-family:
-        ui-monospace,
-        /* macOS 10.10+ */ "Menlo",
-        /* Windows 6+ */ "Consolas",
-        /* Android 4+ */ "Roboto Mono",
-        /* Ubuntu 10.10+ */ "Ubuntu Monospace",
-        /* KDE Plasma 5+ */ "Noto Mono",
-        /* KDE Plasma 4+ */ "Oxygen Mono",
-        /* Linux/OpenOffice fallback */ "Liberation Mono",
-        /* fallback */ monospace,
-        /* macOS emoji */ "Apple Color Emoji",
-        /* Windows emoji */ "Segoe UI Emoji",
-        /* Windows emoji */ "Segoe UI Symbol",
-        /* Linux emoji */ "Noto Color Emoji";
-      font-size: 1em; /* 2 */
-    }
-
-    small {
-      font-size: 80%;
-    }
-
-    sub,
-    sup {
-      font-size: 75%;
-      line-height: 0;
-      position: relative;
-      vertical-align: baseline;
-    }
-
-    sub {
-      bottom: -0.25em;
-    }
-
-    sup {
-      top: -0.5em;
-    }
-
-    table {
-      text-indent: 0; /* 1 */
-      border-color: inherit; /* 2 */
-      border-collapse: collapse; /* 3 */
-    }
-
-    button,
-    input,
-    optgroup,
-    select,
-    textarea {
-      font-family: inherit; /* 1 */
-      font-size: 100%; /* 1 */
-      font-weight: inherit; /* 1 */
-      line-height: inherit; /* 1 */
-      color: inherit; /* 1 */
-      margin: 0; /* 2 */
-      padding: 0; /* 3 */
-    }
-
-    button,
-    select {
-      text-transform: none;
-    }
-
-    button,
-    [type='button'],
-    [type='reset'],
-    [type='submit'] {
-      -webkit-appearance: button; /* 1 */
-      background-color: transparent; /* 2 */
-      background-image: none; /* 2 */
-    }
-
-    :-moz-focusring {
-      outline: auto;
-    }
-
-    :-moz-ui-invalid {
-      box-shadow: none;
-    }
-
-    progress {
-      vertical-align: baseline;
-    }
-
-    ::-webkit-inner-spin-button,
-    ::-webkit-outer-spin-button {
-      height: auto;
-    }
-
-    [type='search'] {
-      -webkit-appearance: textfield; /* 1 */
-      outline-offset: -2px; /* 2 */
-    }
-
-    ::-webkit-search-decoration {
-      -webkit-appearance: none;
-    }
-
-    ::-webkit-file-upload-button {
-      -webkit-appearance: button; /* 1 */
-      font: inherit; /* 2 */
-    }
-
-
-    summary {
-      display: list-item;
-    }
-
-
-    blockquote,
-    dl,
-    dd,
-    h1,
-    h2,
-    h3,
-    h4,
-    h5,
-    h6,
-    hr,
-    figure,
-    p,
-    pre {
-      margin: 0;
-    }
-
-    fieldset {
-      margin: 0;
-      padding: 0;
-    }
-
-    legend {
-      padding: 0;
-    }
-
-    ol,
-    ul,
-    menu {
-      list-style: none;
-      margin: 0;
-      padding: 0;
-    }
-
-    textarea {
-      resize: vertical;
-    }
-
-    input::placeholder,
-    textarea::placeholder {
-      opacity: 1; /* 1 */
-    }
-
-    button,
-    [role="button"] {
-      cursor: pointer;
-    }
-
-    :disabled {
-      cursor: default;
-    }
-
-    img,
-    svg,
-    video,
-    canvas,
-    audio,
-    iframe,
-    embed,
-    object {
-      display: block; /* 1 */
-      vertical-align: middle; /* 2 */
-    }
-
-    img,
-    video {
-      max-width: 100%;
-      height: auto;
-    }
-  `;
-
-  return <Styles />;
+  return <></>;
 };

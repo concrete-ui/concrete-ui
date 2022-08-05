@@ -1,127 +1,131 @@
-import { Colors, ColorStyles, ThemeProps } from '@concrete-ui/types';
-import { JSX, ParentComponent } from 'solid-js';
+import { generateCss } from '../../defaultTheme';
 import { measurementToCssUnit } from '@concrete-ui/utils';
-import { styled } from 'solid-styled-components';
-import { useTheme } from '../../provider';
+import { ParentComponent } from 'solid-js';
+import type { VariantProps } from "@stitches/core";
 
-export interface ButtonProps
-  extends JSX.ButtonHTMLAttributes<HTMLButtonElement> {
-  variant: "solid" | "outline";
-  colorScheme: "base" | "subdued";
-}
+export const buttonStyles = generateCss({
+  borderRadius: measurementToCssUnit(2, true),
+  padding: `${measurementToCssUnit(2, true)} ${measurementToCssUnit(6, true)}`,
+  fontWeight: 600,
+  borderWidth: "2px",
+  borderStyle: "solid",
+  borderColor: "CurrentColor",
+  "&:focus": {
+    outline: "none",
+  },
+  "&:focus-visible": {
+    outlineStyle: "solid",
+    outlineColor: "transparent",
+  },
 
-function generateColorStyles(
-  colors: Colors,
-  colorScheme: "base" | "subdued",
-  variant: "solid" | "outline"
-): ColorStyles {
-  switch (colorScheme) {
-    case "subdued":
-      return {
-        bg: {
-          inactive:
-            variant === "solid" ? colors[colorScheme][4] : "transparent",
-          hover:
-            variant === "solid"
-              ? colors[colorScheme][3]
-              : colors[colorScheme][4],
-          active:
-            variant === "solid"
-              ? colors[colorScheme][2]
-              : colors[colorScheme][3],
-        },
-        fg: {
-          inactive:
-            variant === "solid"
-              ? colors[colorScheme][1]
-              : colors[colorScheme][0],
-          hover: variant === "solid" ? colors[colorScheme][0] : undefined,
-          active:
-            variant === "solid"
-              ? colors[colorScheme][4]
-              : colors[colorScheme][-1],
-        },
-        border: {
-          inactive: variant === "solid" ? "transparent" : "currentcolor",
-        },
-      };
-
-    default:
-      // Default color scheme, which will be applied if the current case
-      // is not explicitely defined in the switch statement
-      return {
-        bg: {
-          inactive:
-            variant === "solid" ? colors[colorScheme][0] : "transparent",
-          hover:
-            variant === "solid"
-              ? colors[colorScheme][-1]
-              : colors[colorScheme][4],
-          active:
-            variant === "solid"
-              ? colors[colorScheme][-2]
-              : colors[colorScheme][3],
-        },
-        fg: {
-          inactive:
-            variant === "solid"
-              ? colors[colorScheme][4]
-              : colors[colorScheme][0],
-        },
-      };
-  }
-}
-
-export const ButtonStyled = styled("button")(
-  ({ theme: { colors }, variant, colorScheme }: ButtonProps & ThemeProps) => {
-    const { bg, fg, border } = generateColorStyles(
-      colors,
-      colorScheme,
-      variant
-    );
-
-    return {
-      borderRadius: measurementToCssUnit(2, true),
-      padding: `${measurementToCssUnit(2, true)} ${measurementToCssUnit(
-        6,
-        true
-      )}`,
-      fontWeight: 600,
-      background: bg.inactive,
-      color: fg.inactive,
-      borderWidth: "1px",
-      borderStyle: "solid",
-      borderColor: !border ? "currentcolor" : border.inactive,
-
-      "&:hover": {
-        background: bg.hover,
-        color: fg.hover,
+  variants: {
+    variant: {
+      solid: {},
+      outline: {
+        background: "transparent",
       },
-
-      "&:active": {
-        background: bg.active,
-        color: fg.active,
+    },
+    colorScheme: {
+      base: {
+        "&:focus-visible": {
+          boxShadow: `white 0px 0px 1px 2px, #9477e2 0px 0px 1px 4px, rgba(0, 0, 0, 0.05) 0px 1px 2px 0px`,
+        },
       },
-
-      "&:focus": {
-        outline: "none",
+      subdued: {
+        "&:focus-visible": {
+          boxShadow: `white 0px 0px 1px 2px, #c9c5d4 0px 0px 1px 4px, rgba(0, 0, 0, 0.05) 0px 1px 2px 0px`,
+        },
       },
+    },
+  },
 
-      "&:focus-visible": {
-        outlineStyle: "solid",
-        outlineColor: "transparent",
-        boxShadow: `white 0px 0px 1px 2px, ${colors[colorScheme][2]} 0px 0px 1px 4px, rgba(0, 0, 0, 0.05) 0px 1px 2px 0px`,
+  compoundVariants: [
+    {
+      variant: "solid",
+      colorScheme: "base",
+      css: {
+        background: "$base-100",
+        color: "$base-999",
+        borderColor: "$base-100",
+        "&:hover": {
+          background: "$base-75",
+        },
+        "&:active": {
+          background: "$base-50",
+        },
       },
-    };
-  }
-);
+    },
 
-export const Button: ParentComponent<ButtonProps> = (props) => {
-  const theme = useTheme();
+    {
+      variant: "outline",
+      colorScheme: "base",
+      css: {
+        color: "$base-100",
+        "&:hover": {
+          background: "$base-999",
+        },
+        "&:active": {
+          background: "$base-750",
+          color: "$base-999",
+        },
+      },
+    },
 
+    {
+      variant: "solid",
+      colorScheme: "subdued",
+      css: {
+        background: "$subdued-750",
+        color: "$subdued-75",
+        borderColor: "$subdued-750",
+        "&:hover": {
+          background: "$subdued-500",
+          color: "$subdued-50",
+        },
+        "&:active": {
+          background: "$subdued-250",
+          color: "$subdued-999",
+        },
+      },
+    },
+
+    {
+      variant: "outline",
+      colorScheme: "subdued",
+      css: {
+        color: "$subdued-250",
+        borderColor: "$subdued-750",
+        "&:hover": {
+          background: "$subdued-999",
+          borderColor: "$subdued-500",
+        },
+        "&:active": {
+          background: "$subdued-750",
+          borderColor: "$subdued-250",
+          color: "$subdued-75",
+        },
+      },
+    },
+  ],
+
+  defaultVariants: {
+    variant: "solid",
+    colorScheme: "base",
+  },
+});
+
+export const Button: ParentComponent<VariantProps<typeof buttonStyles>> = (
+  props
+) => {
   return (
-    <ButtonStyled {...props} theme={theme}>
+    <button
+      {...props}
+      class={buttonStyles({
+        variant: props.variant,
+        colorScheme: props.colorScheme,
+      })}
+    >
       {props.children}
-    </ButtonStyled>
+    </button>
   );
 };

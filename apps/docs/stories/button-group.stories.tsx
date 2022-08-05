@@ -20,3 +20,4 @@ const Template: Story = () => (
 );
 
 export const MainButtonGroup = Template.bind({});
+MainButtonGroup.args = {};
